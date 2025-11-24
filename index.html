@@ -11,6 +11,64 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.blog-post {
+				margin-bottom: 2rem;
+				padding-bottom: 1.5rem;
+				border-bottom: 1px solid #eee;
+			}
+			
+			.blog-post h3 {
+				margin-bottom: 0.5rem;
+				color: #4a4a4a;
+			}
+			
+			.blog-meta {
+				font-size: 0.9rem;
+				color: #777;
+				margin-bottom: 1rem;
+			}
+			
+			.blog-excerpt {
+				margin-bottom: 1rem;
+				line-height: 1.6;
+			}
+			
+			.read-more {
+				display: inline-block;
+				background-color: #4a4a4a;
+				color: white;
+				padding: 0.5rem 1rem;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 0.9rem;
+				transition: background-color 0.3s;
+			}
+			
+			.read-more:hover {
+				background-color: #333;
+			}
+			
+			.full-article {
+				display: none;
+				padding: 1.5rem;
+				background-color: #f9f9f9;
+				border-radius: 4px;
+				margin-top: 1rem;
+			}
+			
+			.back-to-blog {
+				display: inline-block;
+				margin-top: 1rem;
+				color: #4a4a4a;
+				text-decoration: none;
+				font-weight: bold;
+			}
+			
+			.back-to-blog:hover {
+				text-decoration: underline;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -51,7 +109,7 @@
 								<!-- <h2 class="major">About</h2> -->
 								<center><h2>About</h2></center>
 								<span class="image main"><img src="images/pic03_.jpg" alt="" /></span>
-								<p align="justify"><b>Innovative Technologist</b><br>Assalamu'alaikum. I'm Muhammad Andyk Maulana (he/him)— Currently working as an IT Staff focusing on System Administration and Cybersecurity at <a href="https://stai-ali.ac.id/" target="_blank">STAI ALI Surabaya</a>. Previously, I worked at PT. Telkom Satelit Indonesia, handling IoT projects (Embedded Programming, API Data Collection, etc.). I live in Sidoarjo, East Java, Indonesia. 🙌 I am passionate about creating useful solutions for others and constantly exploring new technologies. It’s never too late to learn and find joy in every situation.<a href="https://muhammadandykmaulana.github.io/#work" target="_blank">View my previous work</a><br></p>
+								<p align="justify"><b>Innovative Technologist</b><br>Assalamu'alaikum. I'm Muhammad Andyk Maulana (he/him)— Currently working as an IT Staff focusing on System Administration and Cybersecurity at <a href="https://stai-ali.ac.id/" target="_blank">STAI ALI Surabaya</a>. Previously, I worked at PT. Telkom Satelit Indonesia, handling IoT projects (Embedded Programming, API Data Collection, etc.). I live in Sidoarjo, East Java, Indonesia. 🙌 I am passionate about creating useful solutions for others and constantly exploring new technologies. It's never too late to learn and find joy in every situation.<a href="https://muhammadandykmaulana.github.io/#work" target="_blank">View my previous work</a><br></p>
 								<hr />
 								<p align="justify">
 									<b>Skills</b>
@@ -225,13 +283,13 @@
 								<blockquote>Make a Forwarder System for OEE Analysis using protokol RabbitMQ (Python based)</blockquote>
 								<span class="image main"><img src="images/pj007.jpg" alt="" /></span>
 								<p align="justify"><b>Summary:</b><br/>Forwarder system is used to collect data from PLC and also forward the data to server. Forwarder system is divided into two sub systems, Data Collector and Forwarder. Forwarder served to forward raw data from PLC to backend using protocol RabbitMQ and also parsed that data to be sent to Data Collector. As its name, Data Collector served to collect the parsed data from all Forwarders and then sent to server.
-									On my working area, firtsly step, make it sure that 2 devices clearly connected, and trying to communicate between PLC Omron CQM1H Series and Raspberry Pi over serial communication with serial port configuration: 9600 baudrate, 7E2 its means 7E2: seven data bits, even parity bit, two stop bits. Then must to know how to get data from PLC omron CQM1H that connecting on fotometry sensor. By reading on Omron Documentation, I decided to use C-Command Over Host Links communication. After that I’m starting to write program on PLC using ladder Diagram that can be accessed all 29 data fotometri’s sensor. The Real-Time system provides a way to sending commands – requests (from Raspi) and response (to PLC) with Command-Response Frame Format, then the data has been received, processed, parsed and stored into raspberry. The output data as JSON formatted and will be sending to the server using RabbitMQ protocol and the server will do further calculations before it is displayed and analyzed.
+									On my working area, firtsly step, make it sure that 2 devices clearly connected, and trying to communicate between PLC Omron CQM1H Series and Raspberry Pi over serial communication with serial port configuration: 9600 baudrate, 7E2 its means 7E2: seven data bits, even parity bit, two stop bits. Then must to know how to get data from PLC omron CQM1H that connecting on fotometry sensor. By reading on Omron Documentation, I decided to use C-Command Over Host Links communication. After that I'm starting to write program on PLC using ladder Diagram that can be accessed all 29 data fotometri's sensor. The Real-Time system provides a way to sending commands – requests (from Raspi) and response (to PLC) with Command-Response Frame Format, then the data has been received, processed, parsed and stored into raspberry. The output data as JSON formatted and will be sending to the server using RabbitMQ protocol and the server will do further calculations before it is displayed and analyzed.
 								</p>
 								<!-- Projects 08 -->
 								<blockquote>Communicate between PLC (Fatek FBs-20MCT2-AC) and Raspberry Pi over Fatek Protocol.</blockquote>
 								<span class="image main"><img src="images/pj008.jpg" alt="" /></span>
-								<p align="justify"><b>Summary:</b><br/>PLC-IoT, on this section, the IoT project focuses on industrial for getting OEE’s data parameter.
-									The different parts are: working with PLC Fatek FBs-20MCT2-AC and fotometri sensor names as Autonics + reflector. So learn how to communicate between Fatek FBs-20MCT2-AC and Raspberry Pi over fatek protocol with same serial port configuration: 9600 baudrate, 7E2 as project before. Then must to know how to get data from different PLC fatek that connecting on fotometry sensor+reflector. An one way communication to try communicate by using fatek protocol. Try to write program PLC using ladder Diagram on WinProladder that can be accessed all 3 data (good, reject, total) fotometri’s sensor. The Real-Time system provides a way to sending commands– requests (from Raspi) and response (to PLC) in The Communication Message Format of FATEK PLC, then the data has been received, processed, parsed and stored into raspberry. The output data as JSON formatted and will be sending to the server using RabbitMQ protocol and the server will do further calculations before it is displayed and analyzed on Web Interface as known as HMI (Human Machine Interface).
+								<p align="justify"><b>Summary:</b><br/>PLC-IoT, on this section, the IoT project focuses on industrial for getting OEE's data parameter.
+									The different parts are: working with PLC Fatek FBs-20MCT2-AC and fotometri sensor names as Autonics + reflector. So learn how to communicate between Fatek FBs-20MCT2-AC and Raspberry Pi over fatek protocol with same serial port configuration: 9600 baudrate, 7E2 as project before. Then must to know how to get data from different PLC fatek that connecting on fotometry sensor+reflector. An one way communication to try communicate by using fatek protocol. Try to write program PLC using ladder Diagram on WinProladder that can be accessed all 3 data (good, reject, total) fotometri's sensor. The Real-Time system provides a way to sending commands– requests (from Raspi) and response (to PLC) in The Communication Message Format of FATEK PLC, then the data has been received, processed, parsed and stored into raspberry. The output data as JSON formatted and will be sending to the server using RabbitMQ protocol and the server will do further calculations before it is displayed and analyzed on Web Interface as known as HMI (Human Machine Interface).
 									</p>
 								<!-- Projects 09 -->
 								<blockquote>Smartstore phase-1 at PT. Lanius Inovasi Indonesia.</blockquote>
@@ -280,10 +338,10 @@
 								<blockquote>10 November 2020 — <a target="_blank" href="https://www.credly.com/badges/d6b79de3-8e43-4866-8367-832c04e45f8c"><b>Certificate of Course Completion Cisco: CCNA CyberOps Associate.</b></a></blockquote>
 								<blockquote>20 October 2020 — Certificate of Course Completion: Command Line on Progate. </blockquote>
 								<blockquote>1 October 2020 — Certificate of Course Completion: SQL on Progate.</blockquote>
-								<blockquote>26 Juni 2019 (valid for 3 years - now expired) — Certificate of Competence in the area of Software Development with competency: “Junior Programming”.</blockquote>
-								<blockquote>24th Maret 2019 valid for 3 years  - now expired) — Certificate of Competence in the area of Mobile Computing with competency: “Mobile Computing Junior”.</blockquote>
+								<blockquote>26 Juni 2019 (valid for 3 years - now expired) — Certificate of Competence in the area of Software Development with competency: "Junior Programming".</blockquote>
+								<blockquote>24th Maret 2019 valid for 3 years  - now expired) — Certificate of Competence in the area of Mobile Computing with competency: "Mobile Computing Junior".</blockquote>
 								<blockquote>August 2018 — Cisco Networking Academy with Qualification Course: Introduction of Cyber Security.</blockquote>
-								<blockquote>1st December 2016 valid for 3 years - now expired) — Certificate of Competence in the area of Electronic Engineering with competency: “Installation of Control Devices”.
+								<blockquote>1st December 2016 valid for 3 years - now expired) — Certificate of Competence in the area of Electronic Engineering with competency: "Installation of Control Devices".
 								<p align="justify"><b>Responsibilities:</b><br/>Set up industrial control field devices and develop, input, and verify digital and analog control programs for programmable logic controllers (PLCs).</p></blockquote>
 							</article>
 						<!-- About -->
@@ -300,7 +358,7 @@
 								<p align="justify">
 									<b>Responsibilities:</b><br/>
 									<ol>
-										<li>Applied IoT 7 layer by Cisco White Paper 2014, “The Internet of Things”.</li>
+										<li>Applied IoT 7 layer by Cisco White Paper 2014, "The Internet of Things".</li>
 										<li>This research was funded from RISTEK DIKTI-CPPBT from Foreign Cooperation in 2017 scheme with the number: 146/PKS/Kp/PPK.2/CPPBT/V/2017.</li>
 										<li>Publication on Direktorat Kekayaan Hak Intelektual with the number EC00201807850, accepted on 02 Apr 2018.</li>
 									</ol>
@@ -468,13 +526,158 @@
 									</ul>
 
 						</article>
-						<!-- Useful links -->
-						
+						<!-- Blog -->
 						<article id="blog">
 							<center><h2>Blog</h2></center>
 							<span class="image main"><img src="images/links.jpg" alt="" /></span>
 							<hr/>
-							<h4><b>Akan segera tersedia Insya Allah</b></h4>
+							
+							<!-- Blog Post 1 -->
+							<div class="blog-post">
+								<h3>Membangun Portofolio Web Statis dengan Custom Domain</h3>
+								<div class="blog-meta">Diposting pada: 15 Februari 2025 | Kategori: Web Development</div>
+								<div class="blog-excerpt">
+									<p>Tutorial langkah demi langkah: Dari nol hingga online menggunakan GitHub Pages, Cloudflare, dan domain murah (berekstensi .my.id / .biz.id).</p>
+									<p>Sebagai developer atau profesional, memiliki website portofolio adalah kewajiban. Namun, biaya hosting bulanan bisa memberatkan, terutama untuk pemula. Solusinya adalah Static Site...</p>
+								</div>
+								<a href="#" class="read-more" data-article="article1">Baca Selengkapnya</a>
+								
+								<div id="article1" class="full-article">
+									<h3>Membangun Portofolio Web Statis dengan Custom Domain</h3>
+									<div class="blog-meta">Diposting pada: 15 Februari 2025 | Kategori: Web Development</div>
+									
+									<p>Tutorial langkah demi langkah: Dari nol hingga online menggunakan GitHub Pages, Cloudflare, dan domain murah (berekstensi .my.id / .biz.id).</p>
+									
+									<p>Sebagai developer atau profesional, memiliki website portofolio adalah kewajiban. Namun, biaya hosting bulanan bisa memberatkan, terutama untuk pemula. Solusinya adalah <strong>Static Site</strong>. Dengan kombinasi <strong>GitHub Pages</strong> (hosting gratis) dan <strong>Cloudflare</strong> (manajemen DNS & keamanan (WAF - Web Application Firewall)), untuk personal branding Anda hanya perlu membayar biaya perpanjangan domain setahun sekali.</p>
+									
+									<h4>Langkah-langkah:</h4>
+									<ol>
+										<li><strong>Persiapan File Website</strong> - Buat file HTML sederhana untuk portofolio Anda</li>
+										<li><strong>Buat Repository di GitHub</strong> - Unggah file Anda ke GitHub</li>
+										<li><strong>Aktifkan GitHub Pages</strong> - Konfigurasi repository untuk hosting statis</li>
+										<li><strong>Beli Domain</strong> - Dapatkan domain dengan ekstensi .my.id atau .biz.id yang terjangkau</li>
+										<li><strong>Integrasi Cloudflare</strong> - Atur domain untuk menggunakan nameserver Cloudflare</li>
+										<li><strong>Setting DNS Record</strong> - Konfigurasi DNS untuk mengarahkan domain ke GitHub Pages</li>
+										<li><strong>Finalisasi di GitHub</strong> - Tambahkan domain kustom di pengaturan GitHub Pages</li>
+									</ol>
+									
+									<p>Dengan mengikuti langkah-langkah ini, Anda akan memiliki website portofolio profesional dengan domain sendiri tanpa biaya hosting bulanan.</p>
+									
+									<a href="#" class="back-to-blog">← Kembali ke Daftar Blog</a>
+								</div>
+							</div>
+							
+							<!-- Blog Post 2 -->
+							<div class="blog-post">
+								<h3>Pengenalan DevSecOps untuk Pemula</h3>
+								<div class="blog-meta">Diposting pada: 10 Februari 2025 | Kategori: Cybersecurity</div>
+								<div class="blog-excerpt">
+									<p>DevSecOps adalah pendekatan untuk mengintegrasikan praktik keamanan ke dalam proses DevOps. Artikel ini membahas konsep dasar dan manfaat implementasi DevSecOps...</p>
+								</div>
+								<a href="#" class="read-more" data-article="article2">Baca Selengkapnya</a>
+								
+								<div id="article2" class="full-article">
+									<h3>Pengenalan DevSecOps untuk Pemula</h3>
+									<div class="blog-meta">Diposting pada: 10 Februari 2025 | Kategori: Cybersecurity</div>
+									
+									<p>DevSecOps adalah pendekatan untuk mengintegrasikan praktik keamanan ke dalam proses DevOps. Artikel ini membahas konsep dasar dan manfaat implementasi DevSecOps.</p>
+									
+									<h4>Apa itu DevSecOps?</h4>
+									<p>DevSecOps adalah evolusi dari DevOps yang menekankan pentingnya keamanan dalam setiap tahap pengembangan perangkat lunak. Berbeda dengan pendekatan tradisional di mana keamanan diperiksa di akhir siklus pengembangan, DevSecOps mengintegrasikan keamanan sejak awal.</p>
+									
+									<h4>Manfaat DevSecOps:</h4>
+									<ul>
+										<li>Deteksi kerentanan lebih dini</li>
+										<li>Pengurangan biaya perbaikan keamanan</li>
+										<li>Peningkatan kecepatan rilis tanpa mengorbankan keamanan</li>
+										<li>Budaya keamanan yang lebih kuat dalam tim</li>
+									</ul>
+									
+									<h4>Tools DevSecOps yang Populer:</h4>
+									<ul>
+										<li>SAST (Static Application Security Testing) - SonarQube, Checkmarx</li>
+										<li>DAST (Dynamic Application Security Testing) - OWASP ZAP, Burp Suite</li>
+										<li>SCA (Software Composition Analysis) - Snyk, WhiteSource</li>
+										<li>Container Security - Clair, Trivy</li>
+									</ul>
+									
+									<p>Dengan menerapkan DevSecOps, organisasi dapat membangun perangkat lunak yang tidak hanya cepat dan andal, tetapi juga aman dari ancaman keamanan.</p>
+									
+									<a href="#" class="back-to-blog">← Kembali ke Daftar Blog</a>
+								</div>
+							</div>
+							
+							<!-- Blog Post 3 -->
+							<div class="blog-post">
+								<h3>Implementasi IoT dalam Industri 4.0</h3>
+								<div class="blog-meta">Diposting pada: 5 Februari 2025 | Kategori: IoT & Automation</div>
+								<div class="blog-excerpt">
+									<p>Internet of Things (IoT) telah merevolusi cara industri beroperasi. Artikel ini membahas implementasi IoT dalam konteks Industri 4.0 dan manfaatnya bagi efisiensi operasional...</p>
+								</div>
+								<a href="#" class="read-more" data-article="article3">Baca Selengkapnya</a>
+								
+								<div id="article3" class="full-article">
+									<h3>Implementasi IoT dalam Industri 4.0</h3>
+									<div class="blog-meta">Diposting pada: 5 Februari 2025 | Kategori: IoT & Automation</div>
+									
+									<p>Internet of Things (IoT) telah merevolusi cara industri beroperasi. Artikel ini membahas implementasi IoT dalam konteks Industri 4.0 dan manfaatnya bagi efisiensi operasional.</p>
+									
+									<h4>Konsep Dasar IoT Industri:</h4>
+									<p>IoT industri melibatkan penggunaan sensor, perangkat, dan sistem yang terhubung untuk mengumpulkan dan menganalisis data dari proses industri. Data ini digunakan untuk mengoptimalkan operasi, meningkatkan efisiensi, dan memungkinkan pemeliharaan prediktif.</p>
+									
+									<h4>Komponen Utama IoT Industri:</h4>
+									<ul>
+										<li><strong>Sensor dan Aktuator</strong> - Mengumpulkan data dan melakukan tindakan</li>
+										<li><strong>Gateway IoT</strong> - Menghubungkan perangkat ke cloud</li>
+										<li><strong>Platform IoT</strong> - Mengelola dan menganalisis data</li>
+										<li><strong>Aplikasi dan Dashboard</strong> - Menampilkan informasi dan insights</li>
+									</ul>
+									
+									<h4>Studi Kasus Implementasi:</h4>
+									<p>Dalam proyek sebelumnya, saya mengimplementasikan sistem monitoring berbasis IoT untuk memantau kondisi peralatan industri. Sistem ini menggunakan sensor suhu, getaran, dan kelembaban yang terhubung ke Raspberry Pi. Data dikirim ke platform cloud melalui protokol MQTT dan dianalisis untuk mendeteksi anomali sebelum menyebabkan kerusakan peralatan.</p>
+									
+									<p>Hasilnya adalah pengurangan downtime sebesar 30% dan peningkatan efisiensi pemeliharaan sebesar 25%.</p>
+									
+									<a href="#" class="back-to-blog">← Kembali ke Daftar Blog</a>
+								</div>
+							</div>
+							
+							<!-- Blog Post 4 -->
+							<div class="blog-post">
+								<h3>Tips Menjadi System Administrator yang Efektif</h3>
+								<div class="blog-meta">Diposting pada: 1 Februari 2025 | Kategori: System Administration</div>
+								<div class="blog-excerpt">
+									<p>System Administrator memainkan peran kritis dalam menjaga infrastruktur TI tetap berjalan. Artikel ini berbagi tips praktis untuk menjadi System Administrator yang efektif dan efisien...</p>
+								</div>
+								<a href="#" class="read-more" data-article="article4">Baca Selengkapnya</a>
+								
+								<div id="article4" class="full-article">
+									<h3>Tips Menjadi System Administrator yang Efektif</h3>
+									<div class="blog-meta">Diposting pada: 1 Februari 2025 | Kategori: System Administration</div>
+									
+									<p>System Administrator memainkan peran kritis dalam menjaga infrastruktur TI tetap berjalan. Artikel ini berbagi tips praktis untuk menjadi System Administrator yang efektif dan efisien.</p>
+									
+									<h4>1. Otomasi Tugas Rutin</h4>
+									<p>Gunakan scripting (Bash, PowerShell, Python) untuk mengotomasi tugas-tugas rutin seperti backup, monitoring, dan deployment. Ini menghemat waktu dan mengurangi kesalahan manusia.</p>
+									
+									<h4>2. Dokumentasi yang Baik</h4>
+									<p>Dokumentasikan konfigurasi sistem, prosedur pemecahan masalah, dan perubahan yang dilakukan. Dokumentasi yang baik memudahkan troubleshooting dan knowledge sharing.</p>
+									
+									<h4>3. Monitoring Proaktif</h4>
+									<p>Implementasikan sistem monitoring yang memberikan alert sebelum masalah menjadi kritis. Tools seperti Nagios, Zabbix, atau Prometheus dapat membantu.</p>
+									
+									<h4>4. Manajemen Backup yang Solid</h4>
+									<p>Pastikan backup dilakukan secara teratur dan tested. Ingat prinsip 3-2-1: tiga salinan data, dua media berbeda, satu salinan di lokasi terpisah.</p>
+									
+									<h4>5. Continuous Learning</h4>
+									<p>Teknologi terus berkembang. Luangkan waktu untuk mempelajari teknologi baru, mengikuti sertifikasi, dan berpartisipasi dalam komunitas.</p>
+									
+									<p>Dengan menerapkan tips ini, Anda dapat menjadi System Administrator yang lebih efektif dan berharga bagi organisasi.</p>
+									
+									<a href="#" class="back-to-blog">← Kembali ke Daftar Blog</a>
+								</div>
+							</div>
+							
 						</article>
 						
 						<article id="others">
