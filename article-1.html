@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panduan Membangun Portofolio Web Statis Gratis</title>
+    
+    <!-- Meta Tags untuk Preview Social Media (Open Graph) -->
+    <meta property="og:title" content="Panduan Membangun Portofolio Web Statis Gratis">
+    <meta property="og:description" content="Tutorial langkah demi langkah membuat web portofolio dengan domain sendiri (my.id/biz.id) menggunakan GitHub Pages dan Cloudflare.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Panduan+Portofolio+Gratis">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -30,6 +36,29 @@
             margin-bottom: 1rem;
         }
         .dot { width: 0.75rem; height: 0.75rem; border-radius: 50%; }
+        
+        /* Toast Animation */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s, bottom 0.3s;
+        }
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 50px;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
@@ -37,7 +66,7 @@
     <!-- Navigation -->
     <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-100">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <span class="font-bold text-xl tracking-tight text-indigo-600">Portfolio's<span class="text-slate-800">Guide</span></span>
+            <span class="font-bold text-xl tracking-tight text-indigo-600">Portfolio's <span class="text-slate-800">Guide</span></span>
             <a href="https://github.com" target="_blank" class="text-sm font-medium text-slate-500 hover:text-indigo-600 transition">GitHub Pages Edition</a>
         </div>
     </nav>
@@ -54,11 +83,23 @@
             <p class="text-lg text-slate-600 mb-8">
                 Tutorial langkah demi langkah: Dari nol hingga online menggunakan GitHub Pages, Cloudflare, dan domain murah (berekstensi .my.id / .biz.id).
             </p>
-            <div class="flex flex-wrap justify-center gap-4 text-sm text-slate-500">
-                <span class="flex items-center gap-1"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>Hosting Gratis</span>
-                <span class="flex items-center gap-1"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>SSL Aman (HTTPS)</span>
-                <span class="flex items-center gap-1"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>Domain Sendiri</span>
+            
+            <!-- UPDATE: Bagian Feature Highlights (Dibuat Badge agar Jelas) -->
+            <div class="flex flex-wrap justify-center gap-3 text-sm font-medium">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-100 text-green-700 border border-green-200">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    Hosting Gratis
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    SSL Aman (HTTPS)
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-100 text-purple-700 border border-purple-200">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    Domain Sendiri
+                </span>
             </div>
+            
         </div>
     </header>
 
@@ -87,7 +128,11 @@
             <div class="bg-slate-900 rounded-lg p-4 overflow-x-auto">
                 <div class="flex justify-between items-center mb-2 text-slate-400 text-xs uppercase font-bold">
                     <span>index.html</span>
-                    <button onclick="navigator.clipboard.writeText(document.getElementById('code-sample').innerText)" class="hover:text-white transition cursor-pointer">Copy</button>
+                    <!-- Simple copy function for code block -->
+                    <button onclick="copyCode(this)" class="hover:text-white transition cursor-pointer flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        Copy
+                    </button>
                 </div>
                 <pre><code id="code-sample" class="text-sm text-green-400 font-mono">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -120,7 +165,6 @@
                 <li>Klik <strong>Create repository</strong>.</li>
             </ul>
 
-            <!-- Visual Placeholder for Screenshot -->
             <div class="mockup-screen">
                 <div class="mockup-header">
                     <div class="dot bg-red-500"></div><div class="dot bg-yellow-500"></div><div class="dot bg-green-500"></div>
@@ -165,11 +209,11 @@
             <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100 mb-4">
                 <h4 class="font-bold text-indigo-800 text-sm mb-2">Mengapa ekstensi ini?</h4>
                 <p class="text-indigo-700 text-sm">
-                    Domain <code>.my.id</code> ditujukan untuk personal/blog, harganya seringkali di bawah Rp 15.000/tahun jika masih promo (karena termasuk ekstensi yang baru launching). <code>.biz.id</code> untuk bisnis UKM, juga sangat murah. Syarat aktivasinya pun mudah (biasanya hanya verifikasi email/KTP tergantung provider).
+                    Domain <code>.my.id</code> ditujukan untuk personal/blog, harganya seringkali di bawah Rp 15.000/tahun jika masih promo. <code>.biz.id</code> untuk bisnis UKM, juga sangat murah. Syarat aktivasinya pun mudah.
                 </p>
             </div>
             <p class="text-slate-600">
-                <strong>PENTING:</strong> Jangan atur DNS record dulu di panel penyedia domain. Kita akan mengaturnya di Cloudflare. Karena kita akan gunakan Cloudflare sebagai DNS Management, Proteksi DDoS, WAF dan proteksi lainnya.
+                <strong>PENTING:</strong> Jangan atur DNS record dulu di panel penyedia domain. Kita akan mengaturnya di Cloudflare.
             </p>
         </section>
 
@@ -187,7 +231,6 @@
                 <li>Cloudflare akan memindai DNS. Klik Continue saja sampai di halaman instruksi <strong>Change your nameservers</strong>.</li>
             </ol>
             
-            <!-- Visual Placeholder -->
             <div class="mockup-screen">
                 <div class="mockup-header">
                     <div class="dot bg-red-500"></div><div class="dot bg-yellow-500"></div><div class="dot bg-green-500"></div>
@@ -200,7 +243,7 @@
             </div>
 
             <p class="text-slate-600 mt-4">
-                Salin kedua Nameserver dari Cloudflare tersebut. Login kembali ke panel tempat Anda membeli domain (registrar/provider), cari menu <strong>Nameserver Management</strong>, dan ganti nameserver bawaan dengan milik Cloudflare. Simpan. Tunggu waktu propagasi selesai, biasanya akan ada notifikasi via e-mail dari Cloudflare kalau domain sudah go-live.
+                Salin kedua Nameserver dari Cloudflare tersebut. Login kembali ke panel tempat Anda membeli domain (registrar/provider), cari menu <strong>Nameserver Management</strong>, dan ganti nameserver bawaan dengan milik Cloudflare. Simpan.
             </p>
         </section>
 
@@ -209,7 +252,7 @@
             <div class="absolute -left-[13px] top-0 step-number w-6 h-6 rounded-full text-white flex items-center justify-center text-xs font-bold">6</div>
             <h3 class="text-xl font-bold text-slate-900 mb-2">Setting DNS Record</h3>
             <p class="text-slate-600 mb-4">
-                Kembali ke dashboard Cloudflare, masuk ke menu <strong>DNS</strong> > <strong>Records</strong>. Hapus semua record lama jika ada, lalu tambahkan record CNAME baru berikut untuk menghubungkan domain ke GitHub Pages (lihat entry paling bawah):
+                Kembali ke dashboard Cloudflare, masuk ke menu <strong>DNS</strong> > <strong>Records</strong>. Hapus semua record lama jika ada, lalu tambahkan record berikut:
             </p>
 
             <div class="overflow-x-auto">
@@ -256,11 +299,7 @@
                     </tbody>
                 </table>
             </div>
-            <p class="text-xs text-slate-500 mt-2">*Ganti <code>username.github.io</code> dengan username GitHub asli Anda. Name <code>www</code> ini sebagai sub-domain Anda, akan aktif dengan https://www.domain.my.id</p>
-            
-            <div class="mt-4 p-4 bg-blue-50 rounded text-sm text-blue-800">
-                <strong>Tentang SSL/TLS:</strong> Di menu Cloudflare sebelah kiri, klik <strong>SSL/TLS</strong>. Jika Anda mengalami error "Too many redirects", untuk menghindarinya pastikan mode enkripsi diatur ke <strong>Full</strong> (bukan Flexible). Jika tidak ada kendala redirects, cukup set ke Flexible.
-            </div>
+            <p class="text-xs text-slate-500 mt-2">*Ganti <code>username.github.io</code> dengan username GitHub asli Anda.</p>
         </section>
 
         <!-- Step 7 -->
@@ -268,41 +307,56 @@
             <div class="absolute -left-[13px] top-0 step-number w-6 h-6 rounded-full text-white flex items-center justify-center text-xs font-bold">7</div>
             <h3 class="text-xl font-bold text-slate-900 mb-2">Finalisasi di GitHub</h3>
             <p class="text-slate-600 mb-4">
-                Langkah terakhir untuk memberi tahu GitHub bahwa Anda menggunakan domain tersebut.
+                Langkah terakhir:
             </p>
             <ol class="list-decimal list-inside text-slate-600 space-y-2">
                 <li>Kembali ke Repository GitHub > <strong>Settings</strong> > <strong>Pages</strong>.</li>
-                <li>Scroll ke bawah ke bagian <strong>Custom domain</strong>.</li>
-                <li>Masukkan nama domain Anda (misal: <code>budidev.my.id</code> atau <code>www.budidev.my.id</code>).</li>
-                <li>Klik <strong>Save</strong>. GitHub akan melakukan pengecekan DNS (bisa memakan waktu 1-15 menit).</li>
-                <li>Setelah centang hijau muncul, centang kotak <strong>Enforce HTTPS</strong> di bawahnya.</li>
+                <li>Scroll ke <strong>Custom domain</strong>, masukkan domain Anda.</li>
+                <li>Klik <strong>Save</strong> dan centang <strong>Enforce HTTPS</strong>.</li>
             </ol>
-            
-             <!-- Visual Placeholder -->
-             <div class="mockup-screen">
-                <div class="mockup-header">
-                    <div class="dot bg-slate-500"></div>
-                </div>
-                <div class="flex flex-col gap-2 p-4">
-                    <div class="text-white">Custom domain</div>
-                    <div class="flex gap-2">
-                        <div class="bg-slate-800 border border-slate-600 px-2 py-1 rounded text-white">budidev.my.id</div>
-                        <button class="bg-slate-700 px-3 py-1 rounded text-white text-xs">Save</button>
-                    </div>
-                    <div class="text-green-400 text-xs mt-2">✓ DNS check successful</div>
-                </div>
-            </div>
         </section>
 
-        <!-- Conclusion -->
+        <!-- Share Section -->
         <section class="bg-slate-900 rounded-2xl p-8 text-center text-white mt-12">
             <h2 class="text-2xl font-bold mb-4">Selamat! Website Anda Sudah Online</h2>
-            <p class="text-slate-300 mb-8">
-                Sekarang Anda memiliki portofolio profesional dengan domain sendiri tanpa biaya hosting bulanan. Anda cukup mengedit file HTML di komputer dan meng-upload ulang ke GitHub untuk melakukan update.
+            <p class="text-slate-300 mb-8 max-w-lg mx-auto">
+                Sekarang Anda memiliki portofolio profesional. Jangan lupa bagikan panduan ini kepada teman-teman Anda agar mereka juga bisa membuatnya!
             </p>
-            <a href="#" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105 shadow-lg">
-                Bagikan Artikel Ini
-            </a>
+            
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 mb-4">Bagikan ke Sosial Media</h3>
+            
+            <!-- Grid Tombol Share -->
+            <div class="flex flex-wrap justify-center gap-3">
+                <!-- WhatsApp -->
+                <button onclick="shareTo('whatsapp')" class="flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-medium py-2 px-4 rounded-lg transition transform hover:-translate-y-1">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    WhatsApp
+                </button>
+
+                <!-- Telegram -->
+                <button onclick="shareTo('telegram')" class="flex items-center gap-2 bg-[#0088cc] hover:bg-[#007dbb] text-white font-medium py-2 px-4 rounded-lg transition transform hover:-translate-y-1">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 11.944 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Telegram
+                </button>
+
+                <!-- Facebook -->
+                <button onclick="shareTo('facebook')" class="flex items-center gap-2 bg-[#1877F2] hover:bg-[#166fe5] text-white font-medium py-2 px-4 rounded-lg transition transform hover:-translate-y-1">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    Facebook
+                </button>
+                
+                <!-- Twitter/X -->
+                <button onclick="shareTo('twitter')" class="flex items-center gap-2 bg-black hover:bg-slate-800 text-white font-medium py-2 px-4 rounded-lg transition transform hover:-translate-y-1">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    X / Twitter
+                </button>
+
+                <!-- Copy Link -->
+                <button onclick="copyLink()" class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-lg transition transform hover:-translate-y-1 border border-slate-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    Copy Link
+                </button>
+            </div>
         </section>
 
     </main>
@@ -314,5 +368,72 @@
         </div>
     </footer>
 
+    <!-- Toast Component -->
+    <div id="toast">Link berhasil disalin!</div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        function shareTo(platform) {
+            // Mengambil URL saat ini dan Title Halaman
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            const text = encodeURIComponent("Cek panduan cara buat web portofolio gratis dengan domain sendiri ini: ");
+            
+            let shareUrl = "";
+
+            if (platform === 'whatsapp') {
+                // Format Mobile Friendly
+                shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
+            } else if (platform === 'facebook') {
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            } else if (platform === 'telegram') {
+                shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
+            } else if (platform === 'twitter') {
+                shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+            }
+
+            // Buka jendela baru
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+
+        function copyLink() {
+            // Menggunakan cara klasik yang lebih kompatibel dengan iframe/webview
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            
+            showToast("Link artikel berhasil disalin!");
+        }
+
+        // Fungsi copy untuk blok kode (Langkah 1)
+        function copyCode(btn) {
+            const code = document.getElementById('code-sample').innerText;
+            const dummy = document.createElement('textarea');
+            document.body.appendChild(dummy);
+            dummy.value = code;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            
+            // Ubah teks tombol sementara
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = `<span class="text-green-400">Copied!</span>`;
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+            }, 2000);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.innerText = message;
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+    </script>
 </body>
 </html>
